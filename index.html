@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <title>SHATAKSHI DIGITECH</title>
+  <style>
+   /* Reset and base */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f5f7fa;
+  color: #2c3e50;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #202635; /* Dark blue */
+  padding: 30px 40px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav img {
+  height: 45px;
+  filter: brightness(0) invert(1); /* invert logo colors for dark bg */
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: #ecf0f1; /* Light grey */
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+  background-color: #2980b9; /* Bright blue */
+  color: #fff;
+  transform: scale(1.1);
+  outline: none;
+}
+
+/* Home Section */
+#home {
+  position: relative;
+  background-image: url("C:/Users/Admin/Downloads/caa4571b-3cf8-40c0-b0be-898666a6eacc.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  color: #ecf0f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  font-weight: 600;
+}
+
+#home .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(30, 42, 71, 0.75); /* Stronger dark overlay */
+  z-index: 1;
+}
+
+.home-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.home-content h1 {
+  font-size: 4.5rem;
+  margin: 0;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+}
+
+.home-content p {
+  font-size: 1.8rem;
+  margin-top: 20px;
+  line-height: 1.5;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+}
+
+#about-us {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 60px;
+  background-color: #ffffff;
+  gap: 50px;
+  flex-wrap: wrap;
+  color: #34495e;
+}
+
+#about-us .left {
+  flex: 1 1 420px;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#about-us.visible .left {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#about-us h1 {
+  font-size: 3.4rem;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+#about-us p {
+  font-size: 1.3rem;
+  color: #555;
+  line-height: 1.9;
+}
+
+#about-us .right {
+  flex: 1 1 420px;
+  max-width: 500px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(44, 62, 80, 0.1);
+}
+
+#about-us .right img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 15px;
+}
+
+/* Services Section */
+#services {
+  background-color: #f0f4f8;
+  padding: 70px 40px;
+  text-align: center;
+  position: relative;
+  color: #2c3e50;
+}
+
+#services h1 {
+  font-size: 3.6rem;
+  margin-bottom: 50px;
+  font-weight: 700;
+}
+
+.services-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.services-container {
+  display: flex;
+  gap: 35px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+}
+
+.services-container::-webkit-scrollbar {
+  display: none;
+}
+
+.service-box {
+  background: linear-gradient(
+    180deg, 
+    #adcaee 0%,      /* darker blue at top */
+    #e0eef8 100%     /* original lighter blue at bottom */
+  );
+  background-color: #e0eef8;
+  padding: 35px 30px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 12px 25px rgba(41, 128, 185, 0.15);
+  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.service-box:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 20px 35px rgba(41, 128, 185, 0.3);
+}
+
+.service-box h2 {
+  font-size: 1.9rem;
+  color: #1a2b47;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.service-box p {
+  font-size: 1.05rem;
+  color: #555d66;
+  line-height: 1.6;
+}
+
+.service-icon {
+  font-size: 54px;
+  color: #2980b9;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.service-box:hover .service-icon {
+  color: #1a2b47;
+}
+
+/* Scroll Buttons */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #1a2b47;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.8rem;
+  z-index: 10;
+  background-color: rgba(255,255,255,0.9);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  opacity: 0.8;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.scroll-btn:hover {
+  opacity: 1;
+  background-color: #2980b9;
+  color: white;
+}
+
+.scroll-left {
+  left: 15px;
+}
+
+.scroll-right {
+  right: 15px;
+}
+
+/* Contact Section */
+#contact {
+  background-color: #1e2a47;
+  padding: 60px 30px;
+  text-align: center;
+  color: #ecf0f1;
+}
+
+#contact h1 {
+  font-size: 3.6rem;
+  margin-bottom: 35px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  color: #ecf0f1;
+}
+
+.contact-container {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #f8f9fa;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  overflow: hidden;
+  color: #2c3e50;
+}
+
+.contact-info,
+form {
+  flex: 1 1 50%;
+  padding: 40px 50px;
+  text-align: left;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form input, form textarea, form button {
+  width: 100%;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-size: 1.1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+  resize: vertical;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+form input:focus, form textarea:focus {
+  outline: none;
+  border-color: #2980b9;
+  box-shadow: 0 0 8px #2980b9;
+}
+
+form button {
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+}
+
+form button:hover {
+  background-color: #1a2b47;
+}
+
+.contact-info p {
+  margin: 20px 0;
+  font-size: 1.2rem;
+}
+
+.contact-info a {
+  color: #2980b9;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: #1a2b47;
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  #about-us {
+    padding: 40px 20px;
+  }
+  .contact-container {
+    flex-direction: column;
+  }
+  .contact-info, form {
+    flex: 1 1 100%;
+    padding: 30px 25px;
+    text-align: center;
+  }
+  form {
+    align-items: center;
+  }
+  nav ul {
+    gap: 15px;
+  }
+  nav {
+    padding: 15px 20px;
+  }
+  .service-box {
+    width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-content h1 {
+    font-size: 3rem;
+  }
+  .home-content p {
+    font-size: 1.2rem;
+  }
+  #services h1,
+  #about-us h1,
+  #contact h1,
+  #why-choose-us h1,
+  #reviews h1 {
+    font-size: 2.5rem;
+  }
+}
+
+#why-choose-us {
+  background-color: #1e2a38; 
+  padding: 60px 40px;
+  text-align: center;
+  color: #e1e8f0; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#why-choose-us h1 {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  color: #f0a500; 
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.choose-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.choose-box {
+  background: #2c3e50; 
+  flex: 1 1 250px;
+  max-width: 280px;
+  padding: 30px 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(240, 165, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+  color: #f0a500; 
+}
+
+.choose-box:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 12px 30px rgba(240, 165, 0, 0.5);
+}
+
+.choose-box h2 {
+  font-size: 1.6rem;
+  margin: 20px 0 10px;
+  color: #f0a500;
+  font-weight: 700;
+}
+
+.choose-box p {
+  font-size: 1rem;
+  color: #cfd8dc; 
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+#reviews {
+  background-color: #fefefe; 
+  padding: 60px 40px;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+#reviews h1 {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  color: #1e2a38; 
+  font-weight: 700;
+}
+
+.reviews-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.review-box {
+  background-color: #f0f4f8;
+  flex: 1 1 280px;
+  max-width: 320px;
+  padding: 30px 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(30, 42, 56, 0.15);
+  font-style: italic;
+  color: #1e2a38;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.review-box:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 8px 30px rgba(30, 42, 56, 0.25);
+  background:linear-gradient(180deg,   #7fb6fa 0%,      /* darker blue at top */
+    #e0eef8 100%   )
+}
+
+.review-box p {
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.review-box h3 {
+  font-weight: 600;
+  font-style: normal;
+  color: #f0a500;
+  text-align: right;
+  font-size: 1.1rem;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#home">
+        <img src="loggo.png" alt="Company Logo">
+      </a>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about-us">About Us</a></li>
+        <li><a href="#services">Services</a></li>     
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div id="home">
+  <div class="overlay"></div>
+  <div class="home-content">
+    <h1>Shatakshi Digitech</h1>
+    <p>Trusted Bulk SMS provider delivering fast, secure,<br> and scalable messaging solutions for businesses and organizations.</p>
+    
+  </div>
+</div>
+
+  <section id="about-us">
+    <div class="left">
+      <h1>About Us</h1>
+      <p>Shatakshi Digitech is a leading provider of bulk SMS solutions. We offer secure, scalable, and reliable messaging services that help businesses connect with their customers efficiently. Our mission is to empower businesses with state-of-the-art communication technology that drives growth and customer satisfaction. With years of expertise and a dedicated team, we ensure every message counts.</p>
+    </div>
+    <div class="right">
+      <img src="C:/Users/Admin/Downloads/334dabe8-baf0-485c-a1d1-657f3abf934a.jpg" alt="About Shatakshi Digitech">
+    </div>
+  </section>
+
+  <section id="services">
+    <h1>Our Services</h1>
+    <div class="services-wrapper">
+      <button class="scroll-btn scroll-left" aria-label="Scroll Left">&#8249;</button>
+      <div class="services-container">
+        <div class="service-box">
+           <i class="fa-solid fa-envelope service-icon"></i>
+          <h2>Bulk Messaging</h2>
+          <p>Reach a wide audience quickly with our bulk messaging service. From promotional campaigns to urgent alerts and reminders, we provide fast, dependable SMS delivery to keep your customers informed and engaged. Elevate your communication strategy with seamless, effective messaging.</p>
+        </div>
+        <div class="service-box">
+            <i class="fa-solid fa-phone-slash service-icon"></i>
+          <h2>Missed Call Service</h2>
+          <p>Enhance customer interaction with our reliable missed call service. Enable users to express interest, verify accounts, or opt-in to your services effortlessly via a missed call. This budget-friendly solution supports lead generation, feedback collection, and subscriber management.
+</p>
+        </div>
+        <div class="service-box">
+           <i class="fa-brands fa-whatsapp service-icon"></i>
+          <h2>Bulk WhatsApp Business API</h2>
+          <p>Connect with your audience where they’re most active — WhatsApp! Our Bulk WhatsApp Business API lets you send timely messages, promotions, and alerts directly to thousands of customers. Fast, secure, and easy to manage, it’s the smart way to boost engagement.
+</p>
+        </div>
+        <div class="service-box">
+           <i class="fa-solid fa-paper-plane service-icon"></i>
+          <h2>Email Services</h2>
+          <p>Send bulk and professional emails effortlessly. Whether it’s transactional messages, promotional campaigns, or newsletters, our secure, high-deliverability email platform ensures you stay connected with your audience effectively and reliably.</p>
+        </div>
+        <div class="service-box">
+          <i class="fa-solid fa-phone service-icon"></i>
+          <h2>Voice Calls</h2>
+          <p>Enhance your communication with our reliable Voice Call services. Connect with customers instantly through automated or live calls, ensuring clear, high-quality audio every time. Ideal for notifications, reminders, and customer support.</p>
+        </div>
+      </div>
+      <button class="scroll-btn scroll-right" aria-label="Scroll Right">&#8250;</button>
+    </div>
+  </section>
+<section id="why-choose-us">
+  <h1>Why Choose Us</h1>
+  <div class="choose-container">
+    <div class="choose-box">
+      <i class="fa-solid fa-shield-halved service-icon"></i>
+      <h2>Secure & Reliable</h2>
+      <p>We prioritize your data security and guarantee high uptime for all communication channels.</p>
+    </div>
+    <div class="choose-box">
+      <i class="fa-solid fa-bolt service-icon"></i>
+      <h2>Fast Delivery</h2>
+      <p>Our infrastructure ensures your messages, calls, and emails are delivered quickly and efficiently.</p>
+    </div>
+    <div class="choose-box">
+      <i class="fa-solid fa-headset service-icon"></i>
+      <h2>24/7 Support</h2>
+      <p>Our expert team is available round the clock to assist you whenever you need help.</p>
+    </div>
+    <div class="choose-box">
+      <i class="fa-solid fa-chart-line service-icon"></i>
+      <h2>Scalable Solutions</h2>
+      <p>Grow without limits — our platform adapts to your business needs from small startups to enterprises.</p>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <h1>What Our Clients Say</h1>
+  <div class="reviews-container">
+    <div class="review-box">
+      <p>"Shatakshi Digitech transformed how we communicate with our customers. Reliable and fast service!"</p>
+      <h3>- Priya S.</h3>
+    </div>
+    <div class="review-box">
+      <p>"Exceptional support and scalable solutions. Highly recommended for any business."</p>
+      <h3>- Rahul M.</h3>
+    </div>
+    <div class="review-box">
+      <p>"The bulk messaging feature helped us increase our campaign reach massively."</p>
+      <h3>- Neha K.</h3>
+    </div>
+    <div class="review-box">
+      <p>"Shatakshi Digitech transformed how we communicate with our customers. Reliable and fast service!"</p>
+      <h3>- Priya S.</h3>
+    </div>
+    <div class="review-box">
+      <p>"Shatakshi Digitech transformed how we communicate with our customers. Reliable and fast service!"</p>
+      <h3>- Priya S.</h3>
+    </div>
+  </div>
+  
+</section>
+
+  <section id="contact">
+    <u><h1>Contact Us</h1></u>
+    <div class="contact-container">
+      <div class="contact-info">
+        <p><b>Phone:</b> <a href="tel:+91 1234567890"> +91 1234567890</a></p>
+        <p><b>Email:</b><a href="mailto:abcstakshi@gmail.com"> abcstakshi@gmail.com</a></p>
+        <p><b>Address:</b> abcdefsythhl</p>
+      </div>
+      <form action="https://formsubmit.co/your-email@example.com" method="POST">
+          <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+        <input type="text" id="name"  minlength="3" maxlength="40" placeholder="Name" required>
+<input
+  type="email" id="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address"
+/>
+
+        <textarea rows="5" id="address" minlength="10" maxlength="100" placeholder="Address" required></textarea>
+        <button type="submit">Submit</button>
+      </form>     
+    </div>
+  </section>
+
+  <script>
+    const container = document.querySelector('.services-container');
+    const btnLeft = document.querySelector('.scroll-left');
+    const btnRight = document.querySelector('.scroll-right');
+
+    btnLeft.addEventListener('click', () => {
+      container.scrollBy({ left: -320, behavior: 'smooth' });
+    });
+
+    btnRight.addEventListener('click', () => {
+      container.scrollBy({ left: 320, behavior: 'smooth' });
+    });
+  </script>
+  <script>
+  const aboutSection = document.querySelector('#about-us');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          aboutSection.classList.add('visible');
+        } else {
+          aboutSection.classList.remove('visible');
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  observer.observe(aboutSection);
+</script>
