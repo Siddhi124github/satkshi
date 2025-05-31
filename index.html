@@ -705,6 +705,17 @@ form button:hover {
       <h3>- Priya S.</h3>
     </div>
   </div>
+  <button onclick="openFeedbackForm()" style="margin-bottom: 20px; padding: 10px 20px; font-size: 1.1rem; cursor: pointer; background-color: #2980b9; color: white; border: none; border-radius: 8px;">Leave Feedback</button>
+<div id="feedback-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:999;">
+  <div style="background:white; padding: 30px; border-radius:10px; width:90%; max-width:400px; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
+    <h2>Leave Your Feedback</h2>
+    <input type="text" id="feedback-name" placeholder="Your Name" style="width:100%; padding:10px; margin-top:10px;" required>
+    <textarea id="feedback-message" placeholder="Your feedback..." rows="4" style="width:100%; padding:10px; margin-top:10px;" required></textarea>
+    <button onclick="submitFeedback()" style="margin-top: 15px; padding:10px 20px; background-color:#2980b9; color:white; border:none; border-radius:5px;">Submit</button>
+    <button onclick="closeFeedbackForm()" style="margin-top: 15px; padding:10px 20px; background-color:grey; color:white; border:none; border-radius:5px; float:right;">Cancel</button>
+  </div>
+</div>
+
   
 </section>
 
@@ -764,5 +775,53 @@ form button:hover {
   function toggleMenu() {
     const menu = document.getElementById('nav-menu');
     menu.classList.toggle('active');
+  }
+</script>
+<script>
+  function openFeedbackForm() {
+    document.getElementById('feedback-modal').style.display = 'flex';
+  }
+
+  function closeFeedbackForm() {
+    document.getElementById('feedback-modal').style.display = 'none';
+  }
+
+  function submitFeedback() {
+    const name = document.getElementById('feedback-name').value.trim();
+    const message = document.getElementById('feedback-message').value.trim();
+
+    if (!name || !message) {
+      alert('Please fill out both fields.');
+      return;
+    }
+
+    const feedback = { name, message };
+    let feedbacks = JSON.parse(localStorage.getItem('clientFeedbacks')) || [];
+    feedbacks.unshift(feedback); // newest first
+    localStorage.setItem('clientFeedbacks', JSON.stringify(feedbacks));
+    
+    addFeedbackToDOM(feedback);
+    closeFeedbackForm();
+    
+    // Clear input fields
+    document.getElementById('feedback-name').value = '';
+    document.getElementById('feedback-message').value = '';
+  }
+
+  function addFeedbackToDOM(feedback) {
+    const container = document.querySelector('.reviews-container');
+    const box = document.createElement('div');
+    box.classList.add('review-box');
+    box.innerHTML = `
+      <p>"${feedback.message}"</p>
+      <h3>- ${feedback.name}</h3>
+    `;
+    container.prepend(box); // add at top
+  }
+
+  // Load saved feedbacks on page load
+  window.onload = function () {
+    const feedbacks = JSON.parse(localStorage.getItem('clientFeedbacks')) || [];
+    feedbacks.forEach(addFeedbackToDOM);
   }
 </script>
