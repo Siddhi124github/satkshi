@@ -793,15 +793,17 @@ Mumbai - 400068</p>
   function submitFeedback() {
   const name = document.getElementById('feedback-name').value;
   const message = document.getElementById('feedback-message').value;
-fetch("https://corsproxy.io/?" + encodeURIComponent('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec'), {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({ name, message })
-})
+const proxyUrl = "https://thingproxy.freeboard.io/fetch/";
+  const targetUrl = "https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec";
 
-  .then(response => response.json())
+  fetch(proxyUrl + targetUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ name, message })
+  })
+  .then(res => res.json())
   .then(data => {
     if (data.success) {
       alert("Feedback submitted successfully!");
@@ -816,7 +818,6 @@ fetch("https://corsproxy.io/?" + encodeURIComponent('https://script.google.com/m
     alert("Network error. See console for details.");
   });
 }
-
 
   window.onload = function () {
     fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec')
