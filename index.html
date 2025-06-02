@@ -776,8 +776,7 @@ Mumbai - 400068</p>
     const menu = document.getElementById('nav-menu');
     menu.classList.toggle('active');
   }
-</script>
-<script>
+
   function openFeedbackForm() {
     document.getElementById('feedback-modal').style.display = 'flex';
   }
@@ -786,60 +785,58 @@ Mumbai - 400068</p>
     document.getElementById('feedback-modal').style.display = 'none';
   }
 
-function submitFeedback() {
-  const name = document.getElementById('feedback-name').value.trim();
-  const message = document.getElementById('feedback-message').value.trim();
+  function submitFeedback() {
+    const name = document.getElementById('feedback-name').value.trim();
+    const message = document.getElementById('feedback-message').value.trim();
 
-  if (!name || !message) {
-    alert('Please fill out both fields.');
-    return;
+    if (!name || !message) {
+      alert('Please fill out both fields.');
+      return;
+    }
+
+    const feedback = { name, message };
+
+    fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec', {
+      method: 'POST',
+      body: JSON.stringify(feedback),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(response => {
+      if (response.success) {
+        alert("Thank you for your feedback!");
+        closeFeedbackForm();
+        addFeedbackToDOM(feedback);
+        document.getElementById('feedback-name').value = '';
+        document.getElementById('feedback-message').value = '';
+      } else {
+        alert("Error: " + response.message);
+      }
+    })
+    .catch(err => {
+      console.error("Failed to send feedback", err);
+      alert("There was an error submitting your feedback.");
+    });
   }
 
-  const feedback = { name, message };
-
-  fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec', {
-    method: 'POST',
-    body: JSON.stringify(feedback),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(res => res.json())
-  .then(response => {
-    if (response.success) {
-      alert("Thank you for your feedback!");
-      closeFeedbackForm();
-
-      // Optionally show the new feedback in DOM
-      addFeedbackToDOM(feedback);
-      document.getElementById('feedback-name').value = '';
-      document.getElementById('feedback-message').value = '';
-    } else {
-      alert("Error: " + response.message);
-    }
-  })
-  .catch(err => {
-    console.error("Failed to send feedback", err);
-    alert("There was an error submitting your feedback.");
-  });
-}
-window.onload = function () {
-  fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec')
-    .then(response => response.json())
-    .then(feedbacks => {
-      feedbacks.reverse().forEach(addFeedbackToDOM);
-    })
-    .catch(error => {
-      console.error("Error loading feedbacks:", error);
-    });
-};
-<script>
   function addFeedbackToDOM({ name, message }) {
     const container = document.querySelector(".reviews-container");
     const box = document.createElement("div");
     box.className = "review-box";
     box.innerHTML = `<p>"${message}"</p><h3>- ${name}</h3>`;
-    container.prepend(box); // newest at top
+    container.prepend(box); // Show newest feedback first
   }
-</script>
 
+  window.onload = function () {
+    fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec')
+      .then(response => response.json())
+      .then(feedbacks => {
+        feedbacks.reverse().forEach(addFeedbackToDOM);
+      })
+      .catch(error => {
+        console.error("Error loading feedbacks:", error);
+      });
+  };
+</script>
