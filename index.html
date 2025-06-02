@@ -797,25 +797,20 @@ function submitFeedback() {
   formData.append('name', name);
   formData.append('message', message);
 
-  fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec', {
-    method: 'POST',
-    body: formData
+ fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'Your Name',
+    message: 'Hello from GitHub Pages!'
   })
-  .then(response => response.json())
-  .then(data => {
-    if (data.success) {
-      alert("Feedback submitted successfully!");
-      addFeedbackToDOM({ name, message });
-      closeFeedbackForm();
-    } else {
-      alert("Submission failed: " + data.message);
-    }
-  })
-  .catch(error => {
-    console.error('Fetch error:', error);
-    alert("Network error. See console for details.");
-  });
-}
+})
+.then(response => response.json())
+.then(data => console.log('Success:', data))
+.catch(error => console.error('Fetch error:', error));
+
 
 
   window.onload = function () {
