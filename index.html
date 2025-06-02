@@ -796,8 +796,8 @@ Mumbai - 400068</p>
   }
 
 function submitFeedback() {
-  const name = document.getElementById('nameInput').value;
-  const message = document.getElementById('messageInput').value;
+  const name = document.getElementById('feedback-name').value;
+  const message = document.getElementById('feedback-message').value;
 
   const formData = new URLSearchParams();
   formData.append('name', name);
