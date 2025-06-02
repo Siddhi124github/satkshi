@@ -799,8 +799,7 @@ function submitFeedback() {
 
   fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec', {
     method: 'POST',
-    body: formData,
-    mode: 'cors' // optional but safe
+    body: formData
   })
   .then(response => response.json())
   .then(data => {
