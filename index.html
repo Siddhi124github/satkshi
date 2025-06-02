@@ -776,6 +776,8 @@ Mumbai - 400068</p>
     const menu = document.getElementById('nav-menu');
     menu.classList.toggle('active');
   }
+</script>
+ <script>
   function openFeedbackForm() {
     document.getElementById('feedback-modal').style.display = 'flex';
   }
@@ -806,20 +808,20 @@ Mumbai - 400068</p>
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, message }),
     })
-      .then(res => res.json())
-      .then(response => {
-        if (response.success) {
-          alert("Thank you for your feedback!");
-          closeFeedbackForm();
-          addFeedbackToDOM({ name, message });
-        } else {
-          alert("Error: " + response.message);
-        }
-      })
-      .catch(err => {
-        console.error("Failed to send feedback", err);
-        alert("There was an error submitting your feedback.");
-      });
+    .then(res => res.json())
+    .then(response => {
+      if (response.success) {
+        alert("Thank you for your feedback!");
+        closeFeedbackForm();
+        addFeedbackToDOM({ name, message });
+      } else {
+        alert("Error: " + response.message);
+      }
+    })
+    .catch(err => {
+      console.error("Failed to send feedback", err);
+      alert("There was an error submitting your feedback.");
+    });
   }
 
   window.onload = function () {
@@ -832,9 +834,4 @@ Mumbai - 400068</p>
         console.error("Error loading feedbacks:", error);
       });
   };
-
-
-
-
-
-</script
+</script>
