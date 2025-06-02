@@ -778,13 +778,14 @@ Mumbai - 400068</p>
   }
 </script>
  <script>
-  function openFeedbackForm() {
-    document.getElementById('feedback-modal').style.display = 'flex';
-  }
+  window.openFeedbackForm = function () {
+  document.getElementById('feedback-modal').style.display = 'flex';
+};
 
-  function closeFeedbackForm() {
-    document.getElementById('feedback-modal').style.display = 'none';
-  }
+
+ window.closeFeedbackForm = function () {
+  document.getElementById('feedback-modal').style.display = 'none';
+};
 
   function addFeedbackToDOM({ name, message }) {
     const container = document.querySelector(".reviews-container");
@@ -794,20 +795,20 @@ Mumbai - 400068</p>
     container.prepend(box); // Show newest feedback first
   }
 
-  function submitFeedback() {
-    const name = document.getElementById('feedback-name').value.trim();
-    const message = document.getElementById('feedback-message').value.trim();
+ window.submitFeedback = function () {
+  const name = document.getElementById('feedback-name').value.trim();
+  const message = document.getElementById('feedback-message').value.trim();
 
-    if (!name || !message) {
-      alert('Please fill out both fields.');
-      return;
-    }
+  if (!name || !message) {
+    alert('Please fill out both fields.');
+    return;
+  }
 
-    fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, message }),
-    })
+  fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, message }),
+  })
     .then(res => res.json())
     .then(response => {
       if (response.success) {
@@ -822,7 +823,7 @@ Mumbai - 400068</p>
       console.error("Failed to send feedback", err);
       alert("There was an error submitting your feedback.");
     });
-  }
+};
 
   window.onload = function () {
     fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec')
