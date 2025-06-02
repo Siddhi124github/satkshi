@@ -321,7 +321,7 @@ nav ul li a:focus {
   right: 15px;
 }
 
-/* Contact Section */
+
 #contact {
   background-color: #1e2a47;
   padding: 60px 30px;
@@ -773,7 +773,6 @@ Mumbai - 400068</p>
 </script>
  <!-- Your HTML content including the button -->
 
-<!-- Move all your <script> tags here, just before closing body tag -->
 <script>
   window.openFeedbackForm = function () {
     document.getElementById('feedback-modal').style.display = 'flex';
@@ -794,14 +793,14 @@ Mumbai - 400068</p>
   function submitFeedback() {
   const name = document.getElementById('feedback-name').value;
   const message = document.getElementById('feedback-message').value;
+fetch("https://corsproxy.io/?" + encodeURIComponent('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec'), {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ name, message })
+})
 
-  fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json' // ✅ Tell server it's JSON
-    },
-    body: JSON.stringify({ name, message }) // ✅ Send it as JSON string
-  })
   .then(response => response.json())
   .then(data => {
     if (data.success) {
