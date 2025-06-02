@@ -571,6 +571,69 @@ form button:hover {
   font-size: 1.1rem;
 }
 
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .reviews-container { margin-top: 20px; }
+    .review-box {
+      border: 1px solid #ccc; 
+      padding: 15px; 
+      margin-bottom: 15px; 
+      border-radius: 8px; 
+      background: #f9f9f9;
+    }
+    .review-box h3 { margin-top: 10px; font-weight: normal; color: #333; }
+    #feedback-modal {
+      display: none;
+      position: fixed;
+      top:0; left:0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    #feedback-modal > div {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    #feedback-modal input, #feedback-modal textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    #feedback-modal button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #feedback-submit-btn {
+      background-color: #2980b9;
+      color: white;
+    }
+    #feedback-cancel-btn {
+      background-color: grey;
+      color: white;
+      float: right;
+    }
+    button.leave-feedback-btn {
+      margin-bottom: 20px; 
+      padding: 10px 20px; 
+      font-size: 1.1rem; 
+      cursor: pointer; 
+      background-color: #2980b9; 
+      color: white; 
+      border: none; 
+      border-radius: 8px;
+    }
+  
 
   </style>
 </head>
@@ -698,136 +761,160 @@ form button:hover {
       <h3>- Priya S.</h3>
     </div>
   </div>
-  <button onclick="openFeedbackForm()" style="margin-bottom: 20px; padding: 10px 20px; font-size: 1.1rem; cursor: pointer; background-color: #2980b9; color: white; border: none; border-radius: 8px;">Leave Feedback</button>
-<div id="feedback-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:999;">
-  <div style="background:white; padding: 30px; border-radius:10px; width:90%; max-width:400px; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
-    <h2>Leave Your Feedback</h2>
-    <input type="text" id="feedback-name" placeholder="Your Name" style="width:100%; padding:10px; margin-top:10px;" required>
-    <textarea id="feedback-message" placeholder="Your feedback..." rows="4" style="width:100%; padding:10px; margin-top:10px;" required></textarea>
-    <button onclick="submitFeedback()" style="margin-top: 15px; padding:10px 20px; background-color:#2980b9; color:white; border:none; border-radius:5px;">Submit</button>
-    <button onclick="closeFeedbackForm()" style="margin-top: 15px; padding:10px 20px; background-color:grey; color:white; border:none; border-radius:5px; float:right;">Cancel</button>
-  </div>
-</div>
-
-  
-</section>
+  <button class="leave-feedback-btn" onclick="openFeedbackForm()">Leave Feedback</button>
+    
+    <div id="feedback-modal">
+      <div>
+        <h2>Leave Your Feedback</h2>
+        <input type="text" id="feedback-name" placeholder="Your Name" />
+        <textarea id="feedback-message" placeholder="Your feedback..." rows="4"></textarea>
+        <button id="feedback-submit-btn" onclick="submitFeedback()">Submit</button>
+        <button id="feedback-cancel-btn" onclick="closeFeedbackForm()">Cancel</button>
+      </div>
+    </div>
+  </section>
 
   <section id="contact">
     <u><h1>Contact Us</h1></u>
     <div class="contact-container">
       <div class="contact-info">
-        <p><b>Phone:</b> <a href="tel:+91 1234567890"> +91 1234567890</a></p>
+        <p><b>Phone:</b> <a href="tel:+911234567890"> +91 1234567890</a></p>
         <p><b>Email:</b><a href="mailto:abcstakshi@gmail.com"> abcstakshi@gmail.com</a></p>
-        <p><b>Address:</b> 1, Shree Ram Anugrah Jang Bahadur Mishra Chawl no1, Ghartanpada, Hanuman Nagar, S P Road, Dahisar East,
-Mumbai - 400068</p>
+        <p><b>Address:</b> 1, Shree Ram Anugrah Jang Bahadur Mishra Chawl no1, Ghartanpada, Hanuman Nagar, S P Road, Dahisar East, Mumbai - 400068</p>
       </div>
       <form action="https://formsubmit.co/your-email@example.com" method="POST">
-          <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
-        <input type="text" id="name"  minlength="3" maxlength="40" placeholder="Name" required>
-<input
-  type="email" id="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address"
-/>
-
+        <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html" />
+        <input type="text" id="name" minlength="3" maxlength="40" placeholder="Name" required />
+        <input type="email" id="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address" />
         <textarea rows="5" id="address" minlength="10" maxlength="100" placeholder="Address" required></textarea>
         <button type="submit">Submit</button>
-      </form>     
+      </form>
     </div>
   </section>
 
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+  <script>
+    // Replace below config with YOUR Firebase project's config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    function openFeedbackForm() {
+      document.getElementById('feedback-modal').style.display = 'flex';
+    }
+
+    function closeFeedbackForm() {
+      document.getElementById('feedback-modal').style.display = 'none';
+    }
+
+    function addFeedbackToDOM({ name, message }) {
+      const container = document.querySelector(".reviews-container");
+      const box = document.createElement("div");
+      box.className = "review-box";
+      box.innerHTML = `<p>"${message}"</p><h3>- ${name}</h3>`;
+      container.prepend(box);
+    }
+
+    function submitFeedback() {
+      const nameInput = document.getElementById('feedback-name');
+      const messageInput = document.getElementById('feedback-message');
+
+      const name = nameInput.value.trim() || "Anonymous";
+      const message = messageInput.value.trim();
+
+      if (!message) {
+        alert("Please enter your feedback.");
+        return;
+      }
+
+      // Save feedback in Firebase
+      db.ref('feedbacks').push({
+        name,
+        message,
+        timestamp: Date.now()
+      })
+      .then(() => {
+        alert("Feedback submitted successfully!");
+        addFeedbackToDOM({ name, message });
+        nameInput.value = '';
+        messageInput.value = '';
+        closeFeedbackForm();
+      })
+      .catch(error => {
+        console.error("Error submitting feedback:", error);
+        alert("Error submitting feedback, please try again.");
+      });
+    }
+
+    // Load feedback on page load
+    function loadFeedbacks() {
+      db.ref('feedbacks').orderByChild('timestamp').limitToLast(50).once('value', snapshot => {
+        const container = document.querySelector('.reviews-container');
+        container.innerHTML = '';
+        const feedbacks = [];
+        snapshot.forEach(childSnapshot => {
+          feedbacks.push(childSnapshot.val());
+        });
+        feedbacks.reverse().forEach(addFeedbackToDOM);
+      });
+    }
+
+    window.onload = loadFeedbacks;
+  </script>
+
+  <!-- Your other existing scripts below -->
   <script>
     const container = document.querySelector('.services-container');
     const btnLeft = document.querySelector('.scroll-left');
     const btnRight = document.querySelector('.scroll-right');
 
-    btnLeft.addEventListener('click', () => {
+    btnLeft?.addEventListener('click', () => {
       container.scrollBy({ left: -320, behavior: 'smooth' });
     });
 
-    btnRight.addEventListener('click', () => {
+    btnRight?.addEventListener('click', () => {
       container.scrollBy({ left: 320, behavior: 'smooth' });
     });
   </script>
+
   <script>
-  const aboutSection = document.querySelector('#about-us');
+    const aboutSection = document.querySelector('#about-us');
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          aboutSection.classList.add('visible');
-        } else {
-          aboutSection.classList.remove('visible');
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            aboutSection.classList.add('visible');
+          } else {
+            aboutSection.classList.remove('visible');
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
 
-  observer.observe(aboutSection);
-</script>
-<script>
-  function toggleMenu() {
-    const menu = document.getElementById('nav-menu');
-    menu.classList.toggle('active');
-  }
-</script>
- <!-- Your HTML content including the button -->
+    if(aboutSection) observer.observe(aboutSection);
+  </script>
 
-<script>
-  window.openFeedbackForm = function () {
-    document.getElementById('feedback-modal').style.display = 'flex';
-  };
-
-  window.closeFeedbackForm = function () {
-    document.getElementById('feedback-modal').style.display = 'none';
-  };
-
-  function addFeedbackToDOM({ name, message }) {
-    const container = document.querySelector(".reviews-container");
-    const box = document.createElement("div");
-    box.className = "review-box";
-    box.innerHTML = `<p>"${message}"</p><h3>- ${name}</h3>`;
-    container.prepend(box);
-  }
-
-  function submitFeedback() {
-  const name = document.getElementById('feedback-name').value;
-  const message = document.getElementById('feedback-message').value;
-const proxyUrl = "https://thingproxy.freeboard.io/fetch/";
-  const targetUrl = "https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec";
-
-  fetch(proxyUrl + targetUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ name, message })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.success) {
-      alert("Feedback submitted successfully!");
-      addFeedbackToDOM({ name, message });
-      closeFeedbackForm();
-    } else {
-      alert("Submission failed: " + data.message);
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('nav-menu');
+      menu.classList.toggle('active');
     }
-  })
-  .catch(error => {
-    console.error('Fetch error:', error);
-    alert("Network error. See console for details.");
-  });
-}
+  </script>
 
-  window.onload = function () {
-    fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec')
-      .then(response => response.json())
-      .then(feedbacks => {
-        feedbacks.reverse().forEach(addFeedbackToDOM);
-      })
-      .catch(error => {
-        console.error("Error loading feedbacks:", error);
-      });
-  };
-</script>
 </body>
+</html>
