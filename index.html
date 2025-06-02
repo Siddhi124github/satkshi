@@ -572,17 +572,29 @@ form button:hover {
 }
 
       body { font-family: Arial, sans-serif; margin: 20px; }
-    #feedback-modal > div {
-      display: none;
+   #feedback-modal {
+  display: none;   /* hide the whole modal by default */
   position: fixed;
   top: 0; left: 0;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
+  width: 100vw;    /* full screen overlay */
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);  /* semi-transparent dark overlay */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#feedback-modal > div {
+  display: block;  /* always show the modal box */
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  position: relative;
+}
+
     #feedback-modal input, #feedback-modal textarea {
       width: 100%;
       padding: 10px;
