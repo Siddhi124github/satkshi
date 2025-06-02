@@ -733,21 +733,15 @@ form button:hover {
       <p>"The bulk messaging feature helped us increase our campaign reach massively."</p>
       <h3>- Neha K.</h3>
     </div>
-    <div class="review-box">
-      <p>"Shatakshi Digitech transformed how we communicate with our customers. Reliable and fast service!"</p>
-      <h3>- Priya S.</h3>
-    </div>
-    <div class="review-box">
-      <p>"Shatakshi Digitech transformed how we communicate with our customers. Reliable and fast service!"</p>
-      <h3>- Priya S.</h3>
-    </div>
+    
   </div>
   <button class="leave-feedback-btn" onclick="openFeedbackForm()">Leave Feedback</button>
     
     <div id="feedback-modal">
       <div>
         <h2>Leave Your Feedback</h2>
-        <input type="text" id="feedback-name" placeholder="Your Name" />
+        <input type="text" id="feedback-name" placeholder="Your Name" style="color: yellow; border: 1px solid #ccc; padding: 10px; border-radius: 5px;" />
+
         <textarea id="feedback-message" placeholder="Your feedback..." rows="4"></textarea>
         <button id="feedback-submit-btn" onclick="submitFeedback()">Submit</button>
         <button id="feedback-cancel-btn" onclick="closeFeedbackForm()">Cancel</button>
