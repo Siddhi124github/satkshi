@@ -831,6 +831,7 @@ Mumbai - 400068</p>
 
   window.onload = function () {
     fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec')
+      
       .then(response => response.json())
       .then(feedbacks => {
         feedbacks.reverse().forEach(addFeedbackToDOM);
