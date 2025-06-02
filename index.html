@@ -795,35 +795,33 @@ Mumbai - 400068</p>
     container.prepend(box); // Show newest feedback first
   }
 
- window.submitFeedback = function () {
-  const name = document.getElementById('feedback-name').value.trim();
-  const message = document.getElementById('feedback-message').value.trim();
+function submitFeedback() {
+  const name = document.getElementById('nameInput').value;
+  const message = document.getElementById('messageInput').value;
 
-  if (!name || !message) {
-    alert('Please fill out both fields.');
-    return;
-  }
+  const formData = new URLSearchParams();
+  formData.append('name', name);
+  formData.append('message', message);
 
   fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, message }),
+    body: formData,  // Not JSON
+    mode: 'cors'     // Optional but recommended
   })
-    .then(res => res.json())
-    .then(response => {
-      if (response.success) {
-        alert("Thank you for your feedback!");
-        closeFeedbackForm();
-        addFeedbackToDOM({ name, message });
-      } else {
-        alert("Error: " + response.message);
-      }
-    })
-    .catch(err => {
-      console.error("Failed to send feedback", err);
-      alert("There was an error submitting your feedback.");
-    });
-};
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert("Feedback submitted successfully!");
+    } else {
+      alert("Submission failed: " + data.message);
+    }
+  })
+  .catch(error => {
+    console.error('Fetch error:', error);
+    alert("Network error. See console for details.");
+  });
+}
+
 
   window.onload = function () {
     fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec')
