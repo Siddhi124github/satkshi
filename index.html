@@ -800,27 +800,27 @@ Mumbai - 400068</p>
   formData.append('message', message);
 
   fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec', {
-    method: 'POST',
-    body: formData,
-    // DO NOT set Content-Type manually — browser sets it to application/x-www-form-urlencoded automatically
-  })
-  .then(res => res.json())
-  .then(response => {
-    if (response.success) {
-      alert("Thank you for your feedback!");
-      closeFeedbackForm();
-      addFeedbackToDOM({ name, message });
-      document.getElementById('feedback-name').value = '';
-      document.getElementById('feedback-message').value = '';
-    } else {
-      alert("Error: " + response.message);
-    }
-  })
-  .catch(err => {
-    console.error("Failed to send feedback", err);
-    alert("There was an error submitting your feedback.");
-  });
-}
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ name, message }),
+})
+.then(res => res.json())
+.then(response => {
+  if (response.success) {
+    alert("Thank you for your feedback!");
+    closeFeedbackForm();
+    addFeedbackToDOM({ name, message });
+  } else {
+    alert("Error: " + response.message);
+  }
+})
+.catch(err => {
+  console.error("Failed to send feedback", err);
+  alert("There was an error submitting your feedback.");
+});
+
 
 
   function addFeedbackToDOM({ name, message }) {
