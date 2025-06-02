@@ -771,51 +771,53 @@ Mumbai - 400068</p>
     menu.classList.toggle('active');
   }
 </script>
- <script>
+ <!-- Your HTML content including the button -->
+
+<!-- Move all your <script> tags here, just before closing body tag -->
+<script>
   window.openFeedbackForm = function () {
-  document.getElementById('feedback-modal').style.display = 'flex';
-};
+    document.getElementById('feedback-modal').style.display = 'flex';
+  };
 
-
- window.closeFeedbackForm = function () {
-  document.getElementById('feedback-modal').style.display = 'none';
-};
+  window.closeFeedbackForm = function () {
+    document.getElementById('feedback-modal').style.display = 'none';
+  };
 
   function addFeedbackToDOM({ name, message }) {
     const container = document.querySelector(".reviews-container");
     const box = document.createElement("div");
     box.className = "review-box";
     box.innerHTML = `<p>"${message}"</p><h3>- ${name}</h3>`;
-    container.prepend(box); // Show newest feedback first
+    container.prepend(box);
   }
 
-function submitFeedback() {
-  const name = document.getElementById('feedback-name').value;
-  const message = document.getElementById('feedback-message').value;
+  function submitFeedback() {
+    const name = document.getElementById('feedback-name').value;
+    const message = document.getElementById('feedback-message').value;
 
-  const formData = new URLSearchParams();
-  formData.append('name', name);
-  formData.append('message', message);
+    const formData = new URLSearchParams();
+    formData.append('name', name);
+    formData.append('message', message);
 
-fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec', {Add commentMore actions
-    method: 'POST',
-    body: formData
-.then(response => response.json())Add commentMore actions
-  .then(data => {
-    if (data.success) {
-      alert("Feedback submitted successfully!");
-      addFeedbackToDOM({ name, message });
-      closeFeedbackForm();
-    } else {
-      alert("Submission failed: " + data.message);
-    }
-  })
-  .catch(error => {
-    console.error('Fetch error:', error);
-    alert("Network error. See console for details.");
-  });
-}
-
+    fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert("Feedback submitted successfully!");
+        addFeedbackToDOM({ name, message });
+        closeFeedbackForm();
+      } else {
+        alert("Submission failed: " + data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Fetch error:', error);
+      alert("Network error. See console for details.");
+    });
+  }
 
   window.onload = function () {
     fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-gj5RVRZZzViqT-QVJqdPkfPzbUVsWwF5H-5/exec')
@@ -828,3 +830,4 @@ fetch('https://script.google.com/macros/s/AKfycbxFot1YS39EDc_sesuGLyYo12T1pHvr-g
       });
   };
 </script>
+</body>
