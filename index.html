@@ -8,7 +8,6 @@
   <title>SHATAKSHI DIGITECH</title>
   <style>
     
-   /* Reset and base */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -19,18 +18,16 @@ body {
 }
 @media (max-width: 768px) {
   .container {
-    width: 90%; /* Adjust width as needed */
+    width: 90%; 
     margin: 0 auto;
   }
 }
 
-
-/* Navigation */
 nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #515d7a; /* Dark blue */
+  background-color: #515d7a; 
   padding: 30px 40px;
   box-shadow: 0 3px 8px rgba(0,0,0,0.15);
   position: sticky;
@@ -67,7 +64,7 @@ nav ul li a:focus {
   transform: scale(1.1);
   outline: none;
 }
-/* Hamburger icon (hidden by default) */
+
 .hamburger {
   display: none;
   font-size: 2rem;
@@ -77,12 +74,10 @@ nav ul li a:focus {
 
 /* Mobile styles */
 @media (max-width: 768px) {
-  /* Show hamburger */
   .hamburger {
     display: block;
   }
 
-  /* Hide nav menu by default */
   #nav-menu {
     display: none;
     flex-direction: column;
@@ -590,7 +585,6 @@ form button:hover {
     <!-- Hamburger Icon -->
     <div class="hamburger" onclick="toggleMenu()">☰</div>
 
-    <!-- Navigation Menu -->
     <ul id="nav-menu">
       <li><a href="#home">Home</a></li>
       <li><a href="#about-us">About Us</a></li>
